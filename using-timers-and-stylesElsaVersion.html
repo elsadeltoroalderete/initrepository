@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dynamic Styles using Timers</title>
+    <style>
+        .on{
+            background: violet;
+        }
+        div{
+            padding: 75px;
+            text-align: center;
+            border-style: solid;
+            font-size: 3.5em;
+            font-family: Arial, Helvetica, sans-serif;
+        }               
+    </style>
+</head>
+<body>
+    <button onclick="toggle()">TOGGLE</button>    
+    <button onclick="start()">START</button>    
+    <button onclick="stop()">STOP</button>            
+    <div id="target">Target</div>
+    <script>
+        function toggle(){
+            const element = document.getElementById('target');
+            element.classList.toggle('on');
+        }
+        let timer = null;
+        function start(){
+            timer = setTimeout(() => {
+                toggle();
+                console.log('hello from the timer');
+                start();
+            }, 1000);
+        }
+        function stop(){
+            clearTimeout(timer);
+        }
+    </script>
+</body>
+</html>
